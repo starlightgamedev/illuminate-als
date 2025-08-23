@@ -884,6 +884,11 @@ void UAlsCharacterMovementComponent::MoveAutonomous(const float ClientTimeStamp,
 
 void UAlsCharacterMovementComponent::SetMovementSettings(UAlsMovementSettings* NewMovementSettings)
 {
+	if (!IsValid(NewMovementSettings))
+	{
+		return;
+	}
+	
 	ALS_ENSURE(IsValid(NewMovementSettings));
 
 	MovementSettings = NewMovementSettings;
@@ -893,6 +898,11 @@ void UAlsCharacterMovementComponent::SetMovementSettings(UAlsMovementSettings* N
 
 void UAlsCharacterMovementComponent::RefreshGaitSettings()
 {
+	if (!IsValid(MovementSettings))
+	{
+		return;
+	}
+	
 	if (!ALS_ENSURE(IsValid(MovementSettings)))
 	{
 		return;
